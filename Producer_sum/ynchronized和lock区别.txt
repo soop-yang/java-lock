@@ -1,0 +1,16 @@
+synchronized和lock有什么区别？用新的lock有什么好处？你举例说说
+1、原始构成
+synchronized是关键字属于jvm层面，底层是monitor对象来完成
+lock是具体类，是api层面锁
+2使用方法
+synchronized不需要用户去手动释放锁，当synchronized代码执行完后系统会自动让线程释放对锁的占用
+ReentrantLock则需要用户去手动释放锁，若没有主动释放锁，就有可能导致出现死锁现象
+3等待是否可中断
+synchronized不可中断，除非抛出异常或正常运行完成
+ReentrantLock可中断 ，可设置超时时间
+4加锁是否公平
+synchronized非公平锁
+ReentrantLock两者都可以，默认非公平锁，默认参数传入为false,传true为公平锁
+5、锁绑定多个condition
+synchronized没有
+ReentrantLock用来实现分组唤醒需要唤醒的线程们，可以精确唤醒，而不是像synchronized要么随机唤醒一个线程或唤醒全部线程
