@@ -1,7 +1,14 @@
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
-
+/**
+ *模拟多线程之间按顺序调用，实现A->B->C,要求
+ * AA打印5次，BB打印10次，CC打印15次
+ * 紧接着
+ * AA打印5次，BB打印10次，CC打印15次
+ * .........
+ * 循环10轮
+ * */
 class ShareData{
     //1:A 2:B 3:C
     private int num=1;
@@ -63,8 +70,6 @@ class ShareData{
             lock.unlock();
         }
     }
-
-
 }
 public class SyLock {
     public static void main(String[] args) {
@@ -84,9 +89,5 @@ public class SyLock {
                 shareData.print15();
             }
         },"CC").start();
-
-
-
-
     }
 }
